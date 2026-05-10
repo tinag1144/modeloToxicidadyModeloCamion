@@ -1,10 +1,23 @@
 // Esperar a que cargue el DOM
-document.getElementById("btnAnalizar").addEventListener("click", analizarTexto);
+document
+.getElementById("btnAnalizar")
+.addEventListener("click", analizarTexto);
 
 async function analizarTexto() {
 
   // Obtener texto
   const texto = document.getElementById("texto").value;
+    const resultado = document.getElementById("resultado");
+
+    // Validación
+  if (!texto.trim()) {
+    resultado.textContent = "⚠️ Escribí un texto primero";
+    return;
+  }
+
+  // Mostrar mensaje mientras analiza
+  resultado.textContent = "⏳ Analizando texto...";
+
 
   // Cargar modelo
   const model = await toxicity.load(0.8);
